@@ -25,18 +25,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Mobile menu toggle
   if (hamburger && mobileNav) {
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      mobileNav.classList.toggle('open');
+    const closeMobileNav = () => {
+      hamburger.classList.remove('active');
+      mobileNav.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    };
+
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = mobileNav.classList.contains('open');
+      if (isOpen) {
+        closeMobileNav();
+      } else {
+        hamburger.classList.add('active');
+        mobileNav.classList.add('open');
+        hamburger.setAttribute('aria-expanded', 'true');
+      }
     });
 
     // Close mobile nav when any link is clicked
     mobileNav.querySelectorAll('.nav-link, .nav-cta').forEach(link => {
       link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        mobileNav.classList.remove('open');
+        closeMobileNav();
       });
     });
+
+    // Close when clicking outside of navbar and mobile menu
+    document.addEventListener('click', (e) => {
+      if (mobileNav.classList.contains('open')) {
+        if (!mobileNav.contains(e.target) && !navbar.contains(e.target)) {
+          closeMobileNav();
+        }
+      }
+    });
+
+    // Close on Escape key press
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
+        closeMobileNav();
+      }
+    });
+
+    // Close when window resized to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && mobileNav.classList.contains('open')) {
+        closeMobileNav();
+      }
+    }, { passive: true });
   }
 
   // ============================================================
@@ -267,9 +302,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (badge) badge.classList.add('active-phase');
     };
 
-    // Hover on each step activates it
+    // Hover or tap on each step activates it
     steps.forEach(step => {
       step.addEventListener('mouseenter', () => {
+        activateStep(step);
+      });
+      step.addEventListener('click', () => {
         activateStep(step);
       });
     });
