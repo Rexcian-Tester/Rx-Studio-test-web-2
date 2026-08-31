@@ -105,6 +105,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (trustTicker) {
     const badges = trustTicker.querySelectorAll('.trust-badge');
+    if (badges.length > 0) {
+      badges.forEach((b, i) => {
+        if (i === 0) {
+          b.classList.add('active');
+          b.classList.remove('exit-up');
+        } else {
+          b.classList.remove('active', 'exit-up');
+        }
+      });
+    }
+
     let currentBadge = 0;
     let isAnimating = false;
 
