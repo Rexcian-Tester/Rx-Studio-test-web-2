@@ -273,19 +273,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const glowBlue = document.querySelector('.hero-bg .glow-blue');
 
   if (heroSection && glowRed && glowBlue) {
-    heroSection.addEventListener('mousemove', (e) => {
-      const rect = heroSection.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width;
-      const y = (e.clientY - rect.top) / rect.height;
+    // Only enable parallax glow on desktop — causes rendering glitches on mobile
+    if (window.innerWidth > 768) {
+      heroSection.addEventListener('mousemove', (e) => {
+        const rect = heroSection.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
 
-      const moveX = (x - 0.5) * 35;
-      const moveY = (y - 0.5) * 35;
+        const moveX = (x - 0.5) * 35;
+        const moveY = (y - 0.5) * 35;
 
-      requestAnimationFrame(() => {
-        glowRed.style.transform = `translate(${moveX}px, ${moveY}px)`;
-        glowBlue.style.transform = `translate(${-moveX}px, ${-moveY}px)`;
+        requestAnimationFrame(() => {
+          glowRed.style.transform = `translate(${moveX}px, ${moveY}px)`;
+          glowBlue.style.transform = `translate(${-moveX}px, ${-moveY}px)`;
+        });
       });
-    });
+    }
   }
 
   // ============================================================

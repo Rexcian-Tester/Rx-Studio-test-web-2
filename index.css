@@ -1,5 +1,5 @@
-/* ============================================================
-   RX STUDIO — Design System & Component Styles
+﻿/* ============================================================
+   RX STUDIO â€” Design System & Component Styles
    Premium Dark-Mode SaaS Portfolio
    ============================================================ */
 
@@ -539,14 +539,17 @@ ul, ol {
   z-index: 1;
 }
 
-/* Ensure hero section elements are immediately and cleanly rendered */
-.hero .reveal,
+/* Desktop: ensure hero elements are immediately visible (no scroll-reveal delay) */
+.hero-content,
 .hero-left,
-.hero-right,
-.hero-content {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
+.hero-right {
+  opacity: 1;
+  visibility: visible;
+}
+
+.hero .reveal {
+  opacity: 1;
+  transform: none;
 }
 
 .hero-content {
@@ -629,8 +632,8 @@ ul, ol {
 }
 
 .trust-badge.active {
-  opacity: 1 !important;
-  visibility: visible !important;
+  opacity: 1;
+  visibility: visible;
   transform: translateY(0);
   pointer-events: auto;
 }
@@ -718,7 +721,7 @@ ul, ol {
   100% { transform: translateX(-50%); }
 }
 
-/* Hero Right — Featured Video Card */
+/* Hero Right â€” Featured Video Card */
 .hero-right {
   width: 100%;
   max-width: 100%;
@@ -2336,7 +2339,7 @@ ul, ol {
 }
 
 /* ============================================================
-   SERVICES — TABBED SECTION & VIMEO EMBEDS
+   SERVICES â€” TABBED SECTION & VIMEO EMBEDS
    ============================================================ */
 .services-section {
   padding: 100px 0;
@@ -3003,6 +3006,7 @@ ul, ol {
     width: calc(100% - 36px);
   }
 
+  /* Hero: Switch from grid to flexbox column for reliable stacking */
   .hero {
     min-height: auto;
     padding-top: 110px;
@@ -3010,14 +3014,25 @@ ul, ol {
   }
 
   .hero-content {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 36px;
+    align-items: center;
     text-align: center;
   }
 
   .hero-left {
+    order: 1;
     align-items: center;
     gap: 22px;
+    width: 100%;
+  }
+
+  .hero-right {
+    order: 2;
+    width: 100%;
+    max-width: 680px;
+    margin: 0 auto;
   }
 
   .hero-title {
@@ -3031,11 +3046,6 @@ ul, ol {
 
   .hero-cta-wrap {
     justify-content: center;
-  }
-
-  .hero-right {
-    max-width: 680px;
-    margin: 0 auto;
   }
 
   .pipeline-track {
@@ -3212,24 +3222,36 @@ ul, ol {
     display: flex;
   }
 
-  /* Hero Section */
+  /* ===== HERO SECTION â€” MOBILE FIX ===== */
   .hero {
     padding-top: 88px;
     padding-bottom: 40px;
     min-height: auto;
+    overflow: visible;
   }
 
   .hero-content {
-    grid-template-columns: 1fr;
-    gap: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    align-items: center;
     text-align: center;
+    width: 100%;
   }
 
   .hero-left {
+    order: 1;
     gap: 18px;
     align-items: center;
     text-align: center;
     width: 100%;
+  }
+
+  .hero-right {
+    order: 2;
+    width: 100%;
+    max-width: 580px;
+    margin: 0 auto;
   }
 
   .hero-title {
@@ -3241,7 +3263,7 @@ ul, ol {
   .hero-title .h1 {
     font-size: clamp(2rem, 6.5vw, 2.75rem);
     line-height: 1.18;
-    color: #FFFFFF !important;
+    color: #FFFFFF;
     text-align: center;
     margin: 0 auto;
   }
@@ -3253,7 +3275,7 @@ ul, ol {
     margin: 10px auto 0;
     text-align: center;
     padding: 0 6px;
-    color: rgba(248, 248, 248, 0.8) !important;
+    color: rgba(248, 248, 248, 0.8);
   }
 
   .trust-ticker-container {
@@ -3305,15 +3327,15 @@ ul, ol {
     max-width: 100%;
   }
 
-  .hero-right {
-    width: 100%;
-    max-width: 580px;
-    margin: 0 auto;
-  }
-
+  /* Video card â€” properly contained on mobile */
   .hero-video-card {
     border-radius: var(--radius-md);
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(230, 57, 70, 0.12);
+  }
+
+  /* Disable hover transform on mobile â€” prevents layout jank */
+  .hero-video-card:hover {
+    transform: none;
   }
 
   .hero-video-tag {
@@ -3323,22 +3345,25 @@ ul, ol {
     padding: 4px 10px;
   }
 
+  /* Background glows â€” drastically reduced on mobile to prevent rendering artifacts */
   .hero-bg .glow-red {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     filter: blur(60px);
-    opacity: 0.25;
-    top: 10%;
-    left: -10%;
+    opacity: 0.2;
+    top: 5%;
+    left: -5%;
+    animation: none;
   }
 
   .hero-bg .glow-blue {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     filter: blur(60px);
-    opacity: 0.2;
+    opacity: 0.15;
     bottom: 5%;
-    right: -10%;
+    right: -5%;
+    animation: none;
   }
 
   /* Social Proof & Marquee */
@@ -3732,7 +3757,7 @@ ul, ol {
     font-size: 0.94rem;
   }
 
-  /* Hero */
+  /* ===== HERO â€” PHONE LAYOUT ===== */
   .hero {
     padding-top: 82px;
     padding-bottom: 34px;
@@ -3743,21 +3768,29 @@ ul, ol {
   }
 
   .hero-left {
-    gap: 16px;
+    gap: 14px;
+    order: 1;
+  }
+
+  .hero-right {
+    order: 2;
+    max-width: 100%;
   }
 
   .hero-title .h1 {
     font-size: clamp(1.75rem, 7.2vw, 2.2rem);
     letter-spacing: -0.02em;
     line-height: 1.2;
-    color: #FFFFFF !important;
+    color: #FFFFFF;
   }
 
   .hero-subtext {
     font-size: 0.92rem;
     line-height: 1.55;
-    margin: 8px auto 0;
-    color: rgba(248, 248, 248, 0.8) !important;
+    margin: 6px auto 0;
+    color: rgba(248, 248, 248, 0.8);
+    max-width: 100%;
+    padding: 0;
   }
 
   .hero-cta-wrap {
@@ -3777,7 +3810,8 @@ ul, ol {
   }
 
   .trust-ticker-container {
-    width: 100%;
+    width: auto;
+    max-width: 100%;
     justify-content: center;
     padding: 5px 10px;
   }
@@ -3802,9 +3836,27 @@ ul, ol {
     padding: 6px 14px;
   }
 
-  .hero-right {
-    width: 100%;
-    max-width: 100%;
+  .brand-marquee {
+    margin-top: 4px;
+  }
+
+  /* Background glows â€” nearly hidden on small phones */
+  .hero-bg .glow-red {
+    width: 180px;
+    height: 180px;
+    filter: blur(50px);
+    opacity: 0.15;
+    top: 0;
+    left: -10%;
+  }
+
+  .hero-bg .glow-blue {
+    width: 180px;
+    height: 180px;
+    filter: blur(50px);
+    opacity: 0.1;
+    bottom: 0;
+    right: -10%;
   }
 
   /* Testimonials & Rating */
@@ -4052,12 +4104,35 @@ ul, ol {
 
   /* Hero */
   .hero {
-    padding-top: 76px;
-    padding-bottom: 28px;
+    padding-top: 72px;
+    padding-bottom: 24px;
+  }
+
+  .hero-content {
+    gap: 18px;
+  }
+
+  .hero-left {
+    gap: 12px;
+  }
+
+  .hero-title .h1 {
+    font-size: 1.62rem;
+    line-height: 1.22;
+  }
+
+  .hero-subtext {
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+
+  .hero-cta-wrap {
+    max-width: 280px;
+    gap: 8px;
   }
 
   .trust-ticker {
-    max-width: 230px;
+    max-width: 220px;
   }
 
   .trust-badge .badge-label {
@@ -4066,6 +4141,12 @@ ul, ol {
 
   .trust-badge .badge-icon {
     font-size: 0.8rem;
+  }
+
+  /* Background glows â€” fully hidden on tiny screens */
+  .hero-bg .glow-red,
+  .hero-bg .glow-blue {
+    display: none;
   }
 
   .btn-primary,
@@ -4114,3 +4195,4 @@ ul, ol {
     padding: 5px 8px;
   }
 }
+
