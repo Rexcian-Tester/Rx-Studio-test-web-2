@@ -150,11 +150,12 @@ ul, ol {
 
 .text-glow-red {
   display: inline-block;
-  background: linear-gradient(135deg, #FF4D5E 0%, #E63946 100%);
+  color: #FF4D5E;
+  background: linear-gradient(135deg, #FF6B6B 0%, #E63946 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 0 16px rgba(230, 57, 70, 0.45));
+  text-shadow: 0 0 24px rgba(230, 57, 70, 0.6);
 }
 
 .text-white {
@@ -3122,7 +3123,7 @@ ul, ol {
   }
 
   .desktop-br {
-    display: inline;
+    display: none !important;
   }
 
   .section-header {
@@ -3213,7 +3214,7 @@ ul, ol {
 
   /* Hero Section */
   .hero {
-    padding-top: 92px;
+    padding-top: 88px;
     padding-bottom: 40px;
     min-height: auto;
   }
@@ -3234,21 +3235,24 @@ ul, ol {
   .hero-title {
     max-width: 100%;
     text-align: center;
+    margin: 0 auto;
   }
 
   .hero-title .h1 {
     font-size: clamp(2rem, 6.5vw, 2.75rem);
     line-height: 1.18;
     color: #FFFFFF !important;
+    text-align: center;
+    margin: 0 auto;
   }
 
   .hero-subtext {
     font-size: 0.96rem;
     line-height: 1.58;
-    max-width: 520px;
+    max-width: 500px;
     margin: 10px auto 0;
     text-align: center;
-    padding: 0 4px;
+    padding: 0 6px;
     color: rgba(248, 248, 248, 0.8) !important;
   }
 
@@ -3259,8 +3263,10 @@ ul, ol {
 
   .trust-ticker {
     min-width: 0;
-    width: 280px;
+    width: 270px;
     max-width: 100%;
+    height: 26px;
+    justify-content: center;
   }
 
   .trust-badge {
@@ -3275,9 +3281,22 @@ ul, ol {
   }
 
   .hero-cta-wrap {
-    gap: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+    gap: 12px;
+  }
+
+  .hero-cta-wrap .btn-primary,
+  .hero-cta-wrap .btn-secondary {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+    font-size: 0.94rem;
   }
 
   .brand-marquee {
@@ -3288,7 +3307,7 @@ ul, ol {
 
   .hero-right {
     width: 100%;
-    max-width: 600px;
+    max-width: 580px;
     margin: 0 auto;
   }
 
@@ -3302,6 +3321,24 @@ ul, ol {
     right: 10px;
     font-size: 0.72rem;
     padding: 4px 10px;
+  }
+
+  .hero-bg .glow-red {
+    width: 300px;
+    height: 300px;
+    filter: blur(60px);
+    opacity: 0.25;
+    top: 10%;
+    left: -10%;
+  }
+
+  .hero-bg .glow-blue {
+    width: 300px;
+    height: 300px;
+    filter: blur(60px);
+    opacity: 0.2;
+    bottom: 5%;
+    right: -10%;
   }
 
   /* Social Proof & Marquee */
