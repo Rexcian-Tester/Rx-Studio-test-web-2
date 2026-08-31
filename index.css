@@ -537,17 +537,25 @@ ul, ol {
   overflow: hidden;
 }
 
+/* Ensure hero section elements are immediately and cleanly rendered */
+.hero .reveal {
+  opacity: 1;
+  transform: none;
+}
+
 .hero-content {
   display: grid;
   grid-template-columns: 1.08fr 0.92fr;
   gap: 50px;
   align-items: center;
+  width: 100%;
 }
 
 .hero-left {
   display: flex;
   flex-direction: column;
   gap: 26px;
+  width: 100%;
 }
 
 .hero-title {
@@ -681,8 +689,15 @@ ul, ol {
 }
 
 /* Hero Right — Featured Video Card */
+.hero-right {
+  width: 100%;
+  max-width: 100%;
+}
+
 .hero-video-card {
   position: relative;
+  width: 100%;
+  max-width: 100%;
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--border-medium);
@@ -702,6 +717,8 @@ ul, ol {
   width: 100%;
   padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
   background: #000;
+  overflow: hidden;
+  border-radius: inherit;
 }
 
 .video-iframe-container iframe {
@@ -711,11 +728,12 @@ ul, ol {
   width: 100%;
   height: 100%;
   border: none;
+  display: block;
 }
 
 .hero-video-tag {
   position: absolute;
-  bottom: 14px;
+  top: 14px;
   right: 14px;
   display: inline-flex;
   align-items: center;
@@ -726,9 +744,11 @@ ul, ol {
   color: var(--text-primary);
   background: rgba(10, 10, 12, 0.85);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: var(--radius-full);
   border: 1px solid var(--border-subtle);
   pointer-events: none;
+  z-index: 2;
 }
 
 .hero-video-tag svg {
@@ -2950,22 +2970,39 @@ ul, ol {
     width: calc(100% - 36px);
   }
 
+  .hero {
+    min-height: auto;
+    padding-top: 110px;
+    padding-bottom: 50px;
+  }
+
   .hero-content {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 36px;
     text-align: center;
   }
 
   .hero-left {
     align-items: center;
+    gap: 22px;
   }
 
   .hero-title {
     max-width: 100%;
   }
 
+  .hero-subtext {
+    max-width: 580px;
+    margin: 12px auto 0;
+  }
+
   .hero-cta-wrap {
     justify-content: center;
+  }
+
+  .hero-right {
+    max-width: 680px;
+    margin: 0 auto;
   }
 
   .pipeline-track {
@@ -3039,8 +3076,8 @@ ul, ol {
 
   /* Typography */
   .h1 {
-    font-size: clamp(2rem, 6.2vw, 2.8rem);
-    line-height: 1.2;
+    font-size: clamp(2rem, 6.2vw, 2.75rem);
+    line-height: 1.18;
   }
 
   .h2 {
@@ -3144,33 +3181,41 @@ ul, ol {
 
   /* Hero Section */
   .hero {
-    padding-top: 100px;
-    padding-bottom: 50px;
+    padding-top: 96px;
+    padding-bottom: 44px;
     min-height: auto;
   }
 
   .hero-content {
-    gap: 32px;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    text-align: center;
   }
 
   .hero-left {
-    gap: 20px;
+    gap: 18px;
     align-items: center;
     text-align: center;
+    width: 100%;
   }
 
   .hero-title {
     max-width: 100%;
+    text-align: center;
   }
 
   .hero-subtext {
-    font-size: 0.98rem;
-    line-height: 1.6;
-    margin-top: 10px;
+    font-size: 0.96rem;
+    line-height: 1.58;
+    max-width: 520px;
+    margin: 10px auto 0;
+    text-align: center;
+    padding: 0 4px;
   }
 
   .trust-ticker-container {
     padding: 5px 14px 5px 10px;
+    margin: 0 auto;
   }
 
   .trust-ticker {
@@ -3182,6 +3227,8 @@ ul, ol {
   .trust-badge {
     font-size: 0.82rem;
     gap: 6px;
+    width: 100%;
+    justify-content: center;
   }
 
   .trust-badge .badge-label {
@@ -3194,12 +3241,25 @@ ul, ol {
     width: 100%;
   }
 
+  .brand-marquee {
+    margin-top: 6px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-right {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
   .hero-video-card {
     border-radius: var(--radius-md);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(230, 57, 70, 0.12);
   }
 
   .hero-video-tag {
-    bottom: 10px;
+    top: 10px;
     right: 10px;
     font-size: 0.72rem;
     padding: 4px 10px;
@@ -3545,8 +3605,9 @@ ul, ol {
 
   /* Typography */
   .h1 {
-    font-size: clamp(1.75rem, 7.5vw, 2.2rem);
+    font-size: clamp(1.75rem, 7.2vw, 2.2rem);
     letter-spacing: -0.02em;
+    line-height: 1.2;
   }
 
   .h2 {
@@ -3566,10 +3627,6 @@ ul, ol {
   .text-body {
     font-size: 0.92rem;
     line-height: 1.6;
-  }
-
-  .hero-subtext {
-    font-size: 0.92rem;
   }
 
   /* Floating Navbar */
@@ -3601,13 +3658,29 @@ ul, ol {
 
   /* Hero */
   .hero {
-    padding-top: 85px;
-    padding-bottom: 40px;
+    padding-top: 84px;
+    padding-bottom: 36px;
+  }
+
+  .hero-content {
+    gap: 24px;
+  }
+
+  .hero-left {
+    gap: 16px;
+  }
+
+  .hero-subtext {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin: 8px auto 0;
   }
 
   .hero-cta-wrap {
     flex-direction: column;
     width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
     gap: 10px;
   }
 
@@ -3643,6 +3716,11 @@ ul, ol {
   .metric-item {
     font-size: 0.78rem;
     padding: 6px 14px;
+  }
+
+  .hero-right {
+    width: 100%;
+    max-width: 100%;
   }
 
   /* Testimonials & Rating */
@@ -3849,7 +3927,8 @@ ul, ol {
 
   /* Typography */
   .h1 {
-    font-size: 1.65rem;
+    font-size: 1.62rem;
+    line-height: 1.22;
   }
 
   .h2 {
@@ -3888,6 +3967,11 @@ ul, ol {
   }
 
   /* Hero */
+  .hero {
+    padding-top: 76px;
+    padding-bottom: 28px;
+  }
+
   .trust-ticker {
     max-width: 230px;
   }
@@ -3946,4 +4030,3 @@ ul, ol {
     padding: 5px 8px;
   }
 }
-

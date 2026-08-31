@@ -79,6 +79,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // ============================================================
   const revealElements = document.querySelectorAll('.reveal');
 
+  // Immediately reveal hero elements above the fold
+  document.querySelectorAll('.hero .reveal').forEach(el => {
+    el.classList.add('revealed');
+  });
+
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -87,8 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }, {
-    threshold: 0.08,
-    rootMargin: '0px 0px -40px 0px'
+    threshold: 0.05,
+    rootMargin: '0px 0px -20px 0px'
   });
 
   revealElements.forEach(el => revealObserver.observe(el));
